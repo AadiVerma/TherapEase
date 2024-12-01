@@ -1,7 +1,9 @@
+import Spline from '@splinetool/react-spline';
+
 export function Section1Footer() {
     return (
-        <div className="absolute bottom-0 w-[100%] pl-1">
-            <h1 className="text-lg pl-6 bg-white/70 p-4 w-[24%] rounded-tl-3xl font-semibold  text-neutral-800 rounded-tr-3xl">Welcome to Mindfulness</h1>
+        <div className="absolute bottom-0 w-[100%]">
+            <h1 className="text-lg pl-6 bg-white/70 p-4 w-[24%] font-semibold  text-neutral-800 rounded-tr-3xl">Welcome to Mindfulness</h1>
             <h2 className="text-7xl pl-6 bg-white/70 w-[30%] font-bold rounded-tr-3xl text-neutral-700 p-3">Awaken </h2>
             <h3 className="text-7xl pl-6 bg-white/70 w-[40%] font-bold rounded-tr-3xl text-neutral-700 pr-3 pb-3">Inner Peace</h3>
         </div>
@@ -11,7 +13,7 @@ export function Section1Footer() {
 export function ImageCard() {
     return (
         <div className="absolute top-[20%] w-[100%] h-[100%] pl-4">
-            <img src="/Section12.png" className="w-[20%] rounded-xl bg-white/70 " />
+            <img src="/Section12.png" className="w-[25%] rounded-xl bg-white/70 " />
             <h1 className="mt-1 text-neutral-700  font-semibold text-xl">Stay healthy with TherapEase</h1>
         </div>
     )
