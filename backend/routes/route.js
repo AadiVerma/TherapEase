@@ -5,7 +5,7 @@ import '../config/passportConfig.js';
 import multer from 'multer';
 import { create_journal, getPostsByUsername, update_journal, delete_journal} from '../controller/journal-controller.js';
 import { getAnonymousPosts, createAnonymousPost } from '../controller/anonymous-controller.js';
-import { createMood, getMoods } from '../controller/mood-controller.js'; 
+import { createMood, getMoods,deleteMood } from '../controller/mood-controller.js'; 
 const router = express.Router();
 import upload from '../multer/multerConfig.js';
 import upload1 from '../multer/multerConfig1.js';
@@ -34,8 +34,10 @@ router.get('/:username/:id', getJournalById);
 
 //passport.authenticate('jwt', { session: false })
 
-router.get ('/api/moods/:username', getMoods);
-router.post ('/api/moods/:username', createMood);
+
+router.get('/api/moods/:username', getMoods);
+router.post('/api/moods/:username', createMood);
+router.delete('/api/moods/:id', deleteMood);
 
 
 
