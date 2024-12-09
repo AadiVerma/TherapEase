@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 
 import Loader from "react-js-loader";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   const user = localStorage.getItem('tokenUser');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    
+
     if (token) {
       setIsLoggedIn(true);
     }
@@ -46,7 +46,7 @@ const Navbar = () => {
   const confirmDelete = async () => {
     try {
       // Call the backend route to delete the user
-      await fetch(`http://localhost:8000/delete-user/${user}`, {
+      await fetch(`http://localhost:8080/delete-user/${user}`, {
         method: 'DELETE',
       });
       // Perform logout after deletion
@@ -65,15 +65,14 @@ const Navbar = () => {
   };
 
   return (
-    
+
     <div className="bg-white w-full z-50 shadow-lg">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img className="h-8 w-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQZrRgwuKA5JrFS4glBVgzvmPDhhPjWrObr-D01xeKZQ&s" alt="Your Company" />
-            </a>
+            <Link to="/" className="text-2xl text-zinc-200 font-extrabold">
+              TherapEase
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -88,11 +87,12 @@ const Navbar = () => {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            <a href={`/${user}/mood`} className="text-sm font-semibold leading-6 text-gray-900">Mood Tracker</a>
-            <a href={`/${user}/therapist`} className="text-sm font-semibold leading-6 text-gray-900">AI Therapist</a>
-            <a href={`/${user}/quiz`} className="text-sm font-semibold leading-6 text-gray-900">Quiz</a>
-            <a href={`/${user}/anonymoussharing`} className="text-sm font-semibold leading-6 text-gray-900">Anonymous Sharing</a>
-            <a href="/aboutus" className="text-sm font-semibold leading-6 text-gray-900">About Us</a>
+            <a href={`/${user}/mood`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">Mood Tracker</a>
+            <a href={`/${user}/therapist`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">AI Therapist</a>
+            <a href={`/${user}/quiz`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">Quiz</a>
+            <a href={`/${user}/anonymoussharing`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">Anonymous Sharing</a>
+            <a href={`/${user}/chatdash`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">DashBoard</a>
+            <a href="/aboutus" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">About Us</a>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {isLoggedIn ? (
@@ -175,7 +175,7 @@ const Navbar = () => {
                           <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button-mobile" tabIndex="-1">
                             <a href={`/${user}/profile`} className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0-mobile">Your Profile</a>
                             <a onClick={(e) => handleLogout(e)} href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Sign out</a>
-                    <a onClick={handleDelete} href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Delete Profile</a>
+                            <a onClick={handleDelete} href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">Delete Profile</a>
                           </div>
                         )}
                       </div>

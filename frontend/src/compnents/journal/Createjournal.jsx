@@ -23,7 +23,7 @@ const CreateJournal = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/${user}`, {
+      const response = await fetch(`http://localhost:8080/${user}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${user}`

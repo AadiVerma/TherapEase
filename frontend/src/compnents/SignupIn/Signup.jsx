@@ -355,7 +355,7 @@ export default function Signup() {
                 formDataWithFile.append('profilePicture', profilePicture);
             }
 
-            const response = await fetch('http://localhost:8000/signup', {
+            const response = await fetch('http://localhost:8080/signup', {
                 method: 'POST',
                 body: formDataWithFile,
             });

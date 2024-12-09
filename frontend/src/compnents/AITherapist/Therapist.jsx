@@ -1,18 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import Groq from "groq-sdk";
 import Loader from 'react-js-loader';
 import Navbar from '../navbar/Navbar';
 import './Therapist.css';
+// import ReactDotenv from 'react-dotenv';
 
-const API_KEY = process.env.REACT_APP_API_KEY;
-const genAI = new GoogleGenerativeAI(API_KEY);
+const groq = new Groq({ apiKey:process.env.REACT_APP_GROQ_API_KEY,dangerouslyAllowBrowser:true});
 
 const TypingAnimation = ({ color }) => (
   <div className="item text-2xl">
     <Loader type="ping-cube" bgColor={color} color={color} size={100} />
   </div>
 );
-
+export async function getGroqChatCompletion({input}) {
+  return groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content:`Analyse the user's input and give suggestions or talk with them and provide an answer in paragraphs with spaces between paragraphs and points. Respond as if you are talking to the user in the first person, not the third person:\n\nUser: ${input}\nTherapist:`,
+      },
+    ],
+    model: "llama3-8b-8192",
+  });
+}
 const Therapist = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -28,11 +38,10 @@ const Therapist = () => {
     setLoading(true);
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
       const prompt = `Analyse the user's input and give suggestions or talk with them and provide an answer in paragraphs with spaces between paragraphs and points. Respond as if you are talking to the user in the first person, not the third person:\n\nUser: ${input}\nTherapist:`;
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      let aiMessage = await response.text();
+      const chatCompletion = await getGroqChatCompletion({input:prompt}); 
+      console.log(chatCompletion.choices[0].message.content);
+      let aiMessage = chatCompletion.choices[0].message.content;
 
       // Replace **word** with <strong>word</strong>
       aiMessage = aiMessage.replace(/\*\*(.*?)\*\*/g, '$1');

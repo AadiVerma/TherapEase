@@ -19,7 +19,7 @@ const AnonymousPost = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8000/createAnonymousPosts', {
+      const response = await fetch('http://localhost:8080/createAnonymousPosts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

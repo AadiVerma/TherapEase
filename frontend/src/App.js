@@ -19,17 +19,18 @@ import MoodTrack from './compnents/moodtrack/MoodTrack.jsx';
 import Quiz from './compnents/quiz/Quiz.jsx';
 import UpdateJournal from './compnents/journal/Updatejournal.jsx';
 import Therapist from './compnents/AITherapist/Therapist.jsx';
-
+import {Dashboard} from './compnents/DashBoard/DashBoard.jsx';
+import {ChatRoom} from './compnents/ChatRoom/ChatRoom.jsx'
 const PrivateRoute = ({ children }) => {
   const { username: usernameFromUrl } = useParams(); // Extract username from URL
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
   const usernameFromStorage = localStorage.getItem('tokenUser');
 
-  if (!token || usernameFromUrl !== usernameFromStorage) {
-    localStorage.removeItem('token');
-    localStorage.removeItem('tokenUser');
-    return <Navigate to="/unauthorizedAccess" />;
-  }
+  // if (usernameFromUrl != usernameFromStorage) {
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('tokenUser');
+  //   return <Navigate to="/unauthorizedAccess" />;
+  // }
 
   return children;
 };
@@ -50,10 +51,10 @@ function App() {
         <Route path="/:username/mood" element={<PrivateRoute><MoodTrack /></PrivateRoute>} />
         <Route path="/:username/quiz" element={<PrivateRoute><Quiz /></PrivateRoute>} />
         <Route path="/:username/therapist" element={<PrivateRoute><Therapist /></PrivateRoute>} />
+        <Route path="/:username/chatdash" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/:username/chat/:id" element={<PrivateRoute><ChatRoom /></PrivateRoute>}/>
+
         <Route path="/aboutus" element={<AboutUs />} />
-        
-
-
         <Route path='/:username/createjournal' element={<PrivateRoute><Createjournal /></PrivateRoute>} />
         <Route path='/:username/readjournals' element={<PrivateRoute><Readjournal /></PrivateRoute>} />
         <Route path='/:username/readjournals/:id' element={<PrivateRoute><JournalDetail /></PrivateRoute>} />
