@@ -10,7 +10,7 @@ app.get("/getroomsdata", async (req, res) => {
         return res.status(400).send("Failed to find participants");
     }
 });
-app.post("/api/chatrooms/:id/messages", async (req, res) => {
+app.post("/:id/messages", async (req, res) => {
     const { text, sender } = req.body;
     try {
         const room = await ChatRoom.findOne({
@@ -36,7 +36,8 @@ app.post("/api/chatrooms/:id/messages", async (req, res) => {
     }
 });
 
-app.get("/api/chatrooms/:id",async (req,res)=>{
+app.get("/:id",async (req,res)=>{
+    console.log(req.params.id);
     try {
         const room = await ChatRoom.find({
                 name:req.params.id

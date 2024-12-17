@@ -29,7 +29,7 @@ export function ChatRoom() {
         const fetchInitialData = async () => {
             try {
                 setIsLoading(true);
-                const messagesRes = await axios.get(`http://localhost:8080/chat/api/chatrooms/${id}`,);
+                const messagesRes = await axios.get(`http://localhost:8080/api/chatrooms/${id}`,);
                 console.log(messagesRes);
                 if (isMounted && messagesRes.data) {
                     const formattedMessages = messagesRes.data[0].messages?.map((msg) => ({
@@ -103,13 +103,13 @@ export function ChatRoom() {
         console.log(newMessage);
         try {
             const response = await axios.post(
-                `http://localhost:8080/chat/api/chatrooms/${id}/messages`,
+                `http://localhost:8080/api/chatrooms/${id}/messages`,
                 {
                     text: newMessage,
                     sender: {
                         username: user,
                         name: user,
-                    },
+                    }, 
                 }
             )
 

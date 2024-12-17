@@ -11,10 +11,10 @@ import upload from '../multer/multerConfig.js';
 import upload1 from '../multer/multerConfig1.js';
 import { getJournalById } from '../controller/journal-controller.js';
 import cors from 'cors';
-
-
+import  chatRouter from './chatroutes.js';
+import ChatRoom from '../models/chatModel.js';
 router.use(cors());
-
+router.use(express.json());
 router.post('/signup', upload.single('profilePicture') ,userSignup);
 router.post('/login', userLogin);
 router.get('/users', getUsers);
@@ -34,7 +34,7 @@ router.get('/:username/:id', getJournalById);
 
 //passport.authenticate('jwt', { session: false })
 
-
+router.use("/api/chatrooms",chatRouter);
 router.get('/api/moods/:username', getMoods);
 router.post('/api/moods/:username', createMood);
 router.delete('/api/moods/:id', deleteMood);
