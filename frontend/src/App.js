@@ -21,6 +21,7 @@ import UpdateJournal from './compnents/journal/Updatejournal.jsx';
 import Therapist from './compnents/AITherapist/Therapist.jsx';
 import {Dashboard} from './compnents/DashBoard/DashBoard.jsx';
 import {ChatRoom} from './compnents/ChatRoom/ChatRoom.jsx'
+import Doctor  from './compnents/doctors/doctor.jsx'
 const PrivateRoute = ({ children }) => {
   const { username: usernameFromUrl } = useParams(); // Extract username from URL
   // const token = localStorage.getItem('token');
@@ -49,7 +50,7 @@ function App() {
         <Route path="/:username/createanonymouspost" element={<PrivateRoute><AnonymousPost /></PrivateRoute>} />
         <Route path="/:username/allanonymousposts" element={<PrivateRoute><AllAnonymousPost /></PrivateRoute>} />
         <Route path="/:username/mood" element={<PrivateRoute><MoodTrack /></PrivateRoute>} />
-        <Route path="/:username/quiz" element={<PrivateRoute><Quiz /></PrivateRoute>} />
+        <Route path="/:username/doctor" element={<PrivateRoute><Doctor /></PrivateRoute>} />
         <Route path="/:username/therapist" element={<PrivateRoute><Therapist /></PrivateRoute>} />
         <Route path="/:username/chatdash" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/:username/chat/:id" element={<PrivateRoute><ChatRoom /></PrivateRoute>}/>

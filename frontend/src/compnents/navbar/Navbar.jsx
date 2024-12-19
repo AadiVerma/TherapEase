@@ -67,10 +67,10 @@ const Navbar = () => {
   return (
 
     <div className="bg-white w-full z-50 shadow-lg">
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header className="absolute inset-x-0 top-0 z-50 bg-white">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <Link to="/" className="text-2xl text-zinc-200 font-extrabold">
+            <Link to="/" className="text-2xl text-[#121212] font-extrabold">
               TherapEase
             </Link>
           </div>
@@ -86,13 +86,13 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            <a href={`/${user}/mood`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">Mood Tracker</a>
-            <a href={`/${user}/therapist`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">AI Therapist</a>
-            <a href={`/${user}/quiz`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">Quiz</a>
-            <a href={`/${user}/anonymoussharing`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">Anonymous Sharing</a>
-            <a href={`/${user}/chatdash`} className="text-gray-300 hover:text-white px-3 py-2 rounded-md">DashBoard</a>
-            <a href="/aboutus" className="text-gray-300 hover:text-white px-3 py-2 rounded-md">About Us</a>
+          <div className="hidden lg:flex lg:gap-x-12 ">
+            <a href={`/${user}/mood`} className="text-black hover:text-[#121212] px-3 py-2 rounded-md">Mood Tracker</a>
+            <a href={`/${user}/therapist`} className="text-black hover:text-[#121212]  px-3 py-2 rounded-md">AI Therapist</a>
+            <a href={`/${user}/doctor`} className="text-black hover:text-[#121212]  px-3 py-2 rounded-md">Doctors</a>
+            <a href={`/${user}/anonymoussharing`} className="text-black hover:text-[#121212]  px-3 py-2 rounded-md">Anonymous Sharing</a>
+            <a href={`/${user}/chatdash`} className="text-black hover:text-[#121212]  px-3 py-2 rounded-md">DashBoard</a>
+            <a href="/aboutus" className="text-black hover:text-[#121212]  px-3 py-2 rounded-md">About Us</a>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {isLoggedIn ? (

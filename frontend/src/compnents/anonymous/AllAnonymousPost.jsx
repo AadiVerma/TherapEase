@@ -64,7 +64,7 @@ const AllAnonymousPosts = () => {
   // Fetch Anonymous Posts
   const fetchAnonymousPosts = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/anonymousPosts');
+      const response = await axios.get('http://localhost:8080/anonymousPosts');
       setAnonymousPosts(response.data);
       setFilteredPosts(response.data);
     } catch (error) {
@@ -76,7 +76,8 @@ const AllAnonymousPosts = () => {
   const handleCreatePost = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/anonymousPosts', newPost);
+     const response = await axios.post('http://localhost:8080/createAnonymousPosts', newPost);
+      console.log(response)
       setAnonymousPosts([...anonymousPosts, response.data]);
       resetPostForm();
       setIsModalOpen(false);
